@@ -3,12 +3,8 @@ import { StyleSheet, View, Text, Image, TextInput, ScrollView, Dimensions, Butto
 
 
 
-export const loginOne = () => {
-    return true;
-}
-
 type loginProps = {
-    loginTitle: string,
+    loginTitle?: string,
     imageUrl?: string,
 }
 
