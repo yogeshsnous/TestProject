@@ -1,17 +1,42 @@
-import React, { useState } from 'react';
-import {FlatList, Image, ScrollView, StyleSheet, Text, View} from 'react-native'
+import React, { useEffect, useState } from 'react';
+import {FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 
 
 
 type homeProps = {
+    navigation: any,
 
+}
+
+type listData = {
+    title: string,
+    description: string,
+    imageUrl: string,
 }
 
 
 
 const HomeScreen = (props: homeProps) => {
 
-    const listData = [
+    const [searchProduct, setValue] = useState(true);
+
+    useEffect(() => {
+        console.log("Home Screen Loaded")
+
+        return (() => console.log("Screen Removed"))
+        
+    }, []);
+
+
+      useEffect(() => {
+        //Get product from api based on search text value
+        
+      }, [searchProduct]);
+
+
+
+
+    const listData: listData[] = [
         {
             title: "Monday",
             description: "address one sample",
@@ -65,8 +90,13 @@ const HomeScreen = (props: homeProps) => {
     ]
 
 
-    const renderItem = ({item}: any) => {
-        return(<View style={{width: '100%', height: 80, marginVertical: 5, marginHorizontal: 10, borderRadius: 10, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', backgroundColor: "#808080"}}>
+    const renderItem = (item: listData) => {
+        return(<TouchableOpacity onPress={() => {
+            if(item.title === "Tuesday") {
+                setValue(!value)
+            }
+            
+            }} style={{width: '100%', height: 80, marginVertical: 5, marginHorizontal: 10, borderRadius: 10, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', backgroundColor: "#808080"}}>
             <View style={{width: '20%', height: 70, marginLeft: 20}}>
                 <Image 
                 source={{uri: item.imageUrl}}
@@ -84,7 +114,7 @@ const HomeScreen = (props: homeProps) => {
 
             </View>
 
-        </View>)
+        </TouchableOpacity>)
 
     }
 
@@ -92,11 +122,10 @@ const HomeScreen = (props: homeProps) => {
     <View style={styles.container}>
         <FlatList 
             data={listData}
-            renderItem={({item}) => renderItem({item})}
+            renderItem={({item}) => renderItem(item)}
             horizontal={false}
             style={{width: '100%'}}
             ListHeaderComponent={() => <Text style={{fontSize: 24}}>Days List</Text>}
-            keyExtractor={({item}) => {item.title}}
         />
     </View>
     )

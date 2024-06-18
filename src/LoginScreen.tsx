@@ -12,7 +12,7 @@ type loginProps = {
 
 
 
-const LoginScreen = (propsOne: loginProps) => {
+const LoginScreen = ({navigation}) => {
 
 
     const [userName, setUserName] = useState<string>("")
@@ -22,14 +22,14 @@ const LoginScreen = (propsOne: loginProps) => {
 
 
     const onLoginPress = () => {
+
         if(userName.length < 6) {
             Alert.alert("Error", "Invalid UserName")
         } else if (password.length < 8) {
             Alert.alert("Error", "Invalid Password")
         } else {
-            Alert.alert("Success", "Logged in to App!!")
+            navigation.push('Home');
         }
-        
     }
 
 
@@ -50,7 +50,7 @@ const LoginScreen = (propsOne: loginProps) => {
             <Text style={styles.welcomeText}>upTime</Text>
 
             <Text style={styles.description}>
-                    {propsOne.loginTitle}
+                    {"Welcome"}
             </Text>
 
             <TextInput 
