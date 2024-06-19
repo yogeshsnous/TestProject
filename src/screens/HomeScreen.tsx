@@ -8,7 +8,7 @@ type homeProps = {
 
 }
 
-type listData = {
+export type listData = {
     title: string,
     description: string,
     imageUrl: string,
@@ -16,24 +16,11 @@ type listData = {
 
 
 
-const HomeScreen = (props: homeProps) => {
+const HomeScreen = ({navigation}) => {
 
-    const [searchProduct, setValue] = useState(true);
-
-    useEffect(() => {
-        console.log("Home Screen Loaded")
-
-        return (() => console.log("Screen Removed"))
-        
-    }, []);
-
-
-      useEffect(() => {
-        //Get product from api based on search text value
-        
-      }, [searchProduct]);
-
-
+    const onItemClick = (item: listData) => {
+       navigation.navigate("Details", {item} )
+    }
 
 
     const listData: listData[] = [
@@ -91,12 +78,9 @@ const HomeScreen = (props: homeProps) => {
 
 
     const renderItem = (item: listData) => {
-        return(<TouchableOpacity onPress={() => {
-            if(item.title === "Tuesday") {
-                setValue(!value)
-            }
-            
-            }} style={{width: '100%', height: 80, marginVertical: 5, marginHorizontal: 10, borderRadius: 10, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', backgroundColor: "#808080"}}>
+        return(<TouchableOpacity
+            onPress={() => onItemClick(item)}
+            style={{width: '100%', height: 80, marginVertical: 5, marginHorizontal: 10, borderRadius: 10, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', backgroundColor: "#808080"}}>
             <View style={{width: '20%', height: 70, marginLeft: 20}}>
                 <Image 
                 source={{uri: item.imageUrl}}

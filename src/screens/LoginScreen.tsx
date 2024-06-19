@@ -32,6 +32,10 @@ const LoginScreen = ({navigation}) => {
         }
     }
 
+    const onSignUpAction = () => {
+        navigation.navigate("SignUp")
+    }
+
 
     return (<View style={styles.container}>
         <ScrollView style={{width: '100%'}}>
@@ -84,6 +88,21 @@ const LoginScreen = ({navigation}) => {
 
                 <Text style={{fontSize: 20}}>
                     CLICK TO LOGIN
+                </Text>
+
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                style={styles.buttonView}
+                onPress={onSignUpAction}
+                >
+                    <Image 
+                    style={{height: 50, width: 50}}
+                    source={require("./circle.png")}
+                resizeMode='center'/>
+
+                <Text style={{fontSize: 14}}>
+                    Don't Have an Account?, Click Here!
                 </Text>
 
                 </TouchableOpacity>
