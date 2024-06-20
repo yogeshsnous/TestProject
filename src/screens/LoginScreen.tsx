@@ -12,6 +12,10 @@ type loginProps = {
 
 
 
+
+
+
+
 const LoginScreen = ({navigation}) => {
 
 

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import {Button, FlatList, Image, ScrollView, StyleSheet, Text, View} from 'react-native'
+import {ActivityIndicator, Button, FlatList, Image, ScrollView, SectionList, StyleSheet, Text, View} from 'react-native'
 import { listData } from './HomeScreen';
 
 
 
 
 type detailsProps = {
-    navigation?: any,
     route: any
+    navigation?: any,
+    
 }
 
 
@@ -15,40 +16,56 @@ type detailsProps = {
 
 const DetailsScreen = (props: detailsProps) => {
 
-    const [list, setList] = useState(props.route.params.item)
+    const [loading, setLoading] = useState(true)
 
-    useEffect(()=> {
+    const data = [
+        {day: "Monday", data: ["50Rs", "120Rs", "30Rs", "100Rs"]},
+
+        {day: "Wednesday", data: ["150Rs", "220Rs", "20Rs"]},
+        {day: "Tuesday", data: ["30Rs", "40Rs", "50Rs"]},
+    ]
+
+    useEffect(() => {
+        fetchAPI()
+    }, [])
+
+    const fetchAPI =  async () => {
+
        
 
-    }, [])
- 
-    
+        fetch('https://jsonplaceholder.typicode.com/todos/1')
+      .then(
+
+      )
+      .then(json => console.log(json))
+
+      console.log()
+       
+    }
+
 
 
     return(
-    <View>
-        <View style={{width: '100%', height: 80, marginVertical: 5, marginHorizontal: 10, borderRadius: 10, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', backgroundColor: "#808080"}}>
-            <View style={{width: '20%', height: 70, marginLeft: 20}}>
-                <Image 
-                source={{uri: list?.imageUrl}}
-                style={{width: 70, height: 70, borderRadius: 35}}
-                />
-            </View>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        {/* <SectionList 
+        sections={data}
+        keyExtractor={(item, index) => item+index}
+        renderSectionHeader={({section: {day}}) => (
+            <Text style={{height: 50, width: 200, fontSize: 22 }}>{day}</Text>
+        )}
+        renderItem={({item}) => (
+            <Text style={{height: 50, width: 200, fontSize: 15 }}>{item}</Text>
+        )}
+        /> */}
 
-            <View style={{width: '70%', height: 70, justifyContent: 'center', alignItems: 'flex-start'}}>
-                <Text style={{fontSize: 21, fontWeight: '600', color: "#ADD8E6"}}>
-                    {list?.title}
-                </Text>
-                <Text style={{fontSize: 16, fontWeight: '300', color: 'black'}}>
-                    {list?.description}
-                </Text>
+        {loading ? <ActivityIndicator size={"large"} color={"red"}/> : <Text>Loaded Data</Text>}
 
-            </View>
-
-
+        <View style={{marginTop: 50}}>
+            <Button title='Done' onPress={() => {setLoading(!loading)}} />
         </View>
-        <Button title='Done' onPress={() => {}}></Button>
-        </View>
+        
+        
+    </View>
     )
         
 };

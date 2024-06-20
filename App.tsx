@@ -44,7 +44,7 @@ const Stack = createNativeStackNavigator();
 const LoginStack = () => {
   return (
      <Stack.Navigator initialRouteName='Login'>
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
       </Stack.Navigator>
   ) 
@@ -55,7 +55,7 @@ const LoginStack = () => {
 const HomeStack = () => {
   return (
      <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen  options={{headerShown: false}} name="Home" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
   ) 
@@ -76,8 +76,10 @@ function MyTabs() {
         } else if (route.name === "HomeStack") {
           imageUrl = "https://e7.pngegg.com/pngimages/1016/542/png-clipart-black-house-house-computer-icons-home-automation-kits-real-estate-home-icon-angle-building-thumbnail.png"
         }
-        return <Image style={{width: 40, height: 40}} source={{uri: imageUrl}}/>
-      }
+        return <Image style={{width: 32, height: 32}} source={{uri: imageUrl}}/>
+      },
+      headerShown: false,
+
     })}
     >
       <Tab.Screen name="LoginStack" component={LoginStack} />

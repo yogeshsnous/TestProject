@@ -16,7 +16,7 @@ export type listData = {
 
 
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({navigation, route}) => {
 
     const onItemClick = (item: listData) => {
        navigation.navigate("Details", {item} )
