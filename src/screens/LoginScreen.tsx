@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, TextInput, ScrollView, Dimensions, Button, TouchableOpacity, KeyboardAvoidingView, Platform, Alert } from "react-native"
 
@@ -25,20 +26,48 @@ const LoginScreen = ({navigation}) => {
     const [isTextVisible, setTextVisible] = useState(true)
 
 
-    const onLoginPress = () => {
+    const patch = () => {
 
-        if(userName.length < 6) {
-            Alert.alert("Error", "Invalid UserName")
-        } else if (password.length < 8) {
-            Alert.alert("Error", "Invalid Password")
-        } else {
-            navigation.push('Home');
+    }
+
+ 
+    const onLoginPress = async () => {
+        const data = {
+            "email": userName,
+            "password": password,
+        };
+
+        try {
+            const res = await fetch('https://reqres.in/api/login', {
+                "method": 'POST',
+                "body":  JSON.stringify(data),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+               });
+               
+
+               const loginResponse = await res.json();
+               
+               if(loginResponse.token) {
+                navigation.navigate("Home");
+               } else {
+                Alert.alert("Login Error", loginResponse.error)
+               }
+        } catch {
+            //Handle Error
         }
-    }
 
-    const onSignUpAction = () => {
-        navigation.navigate("SignUp")
+        console.log(userName, "")
+       
+
+
+       // check response
+       // if success navigate to Home Screen
+       //show error msg
     }
+   
 
 
     return (<View style={styles.container}>
@@ -98,7 +127,7 @@ const LoginScreen = ({navigation}) => {
 
                 <TouchableOpacity 
                 style={styles.buttonView}
-                onPress={onSignUpAction}
+                onPress={() => {}}
                 >
                     <Image 
                     style={{height: 50, width: 50}}
@@ -129,7 +158,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',  
     },
     buttonView: {
-        marginVertical: 50,
+        marginVertical: 25,
         width: '80%',
         height: 60,
         borderRadius: 30,

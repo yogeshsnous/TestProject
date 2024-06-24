@@ -45,6 +45,7 @@ const LoginStack = () => {
   return (
      <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
+        <Stack.Screen  options={{headerShown: false}} name="Home" component={HomeScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
       </Stack.Navigator>
   ) 
@@ -55,7 +56,7 @@ const LoginStack = () => {
 const HomeStack = () => {
   return (
      <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen  options={{headerShown: false}} name="Home" component={HomeScreen} />
+        
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
   ) 
@@ -94,7 +95,11 @@ function App(): React.JSX.Element {
 
   return (
     <NavigationContainer>
-      <MyTabs />
+      <Stack.Navigator initialRouteName='Login'>
+        <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
+        <Stack.Screen  options={{headerShown: false}} name="Home" component={HomeScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
