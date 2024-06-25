@@ -26,46 +26,68 @@ const LoginScreen = ({navigation}) => {
     const [isTextVisible, setTextVisible] = useState(true)
 
 
-    const patch = () => {
+ 
+    const onLoginPress = () => {
+
+        const userData = {
+            name: "John Smith",
+            job: "Developer"
+        }
+       
+        deleteAPI()
+       
+    }
+
+    const patchAPI = async (data: any) => {
+        const res = await fetch("https://reqres.in/api/users/2", {
+            method: "PATCH",
+            body: JSON.stringify(data),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+
+        const output = await res.json();
+
+        console.log("PATCH OUTPUT",  output);
 
     }
 
- 
-    const onLoginPress = async () => {
-        const data = {
-            "email": userName,
-            "password": password,
-        };
-
-        try {
-            const res = await fetch('https://reqres.in/api/login', {
-                "method": 'POST',
-                "body":  JSON.stringify(data),
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-               });
-               
-
-               const loginResponse = await res.json();
-               
-               if(loginResponse.token) {
-                navigation.navigate("Home");
-               } else {
-                Alert.alert("Login Error", loginResponse.error)
-               }
-        } catch {
-            //Handle Error
-        }
-
-        console.log(userName, "")
-       
 
 
-       // check response
-       // if success navigate to Home Screen
-       //show error msg
+
+    //https://reqres.in/api/users/{userID}
+
+    const putAPI = async (data: any) => {
+        const res = await fetch("https://reqres.in/api/users/2", {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+
+        const output = await res.json();
+
+        console.log("PUT OUTPUT",  output);
+        
+    }
+
+    const deleteAPI = async () => {
+        const res = await fetch(`/api/users/2`, {
+            method: "DELETE",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+
+        const output = await res.json();
+
+        console.log("DELETE OUTPUT",  output);
+        
     }
    
 
@@ -127,7 +149,7 @@ const LoginScreen = ({navigation}) => {
 
                 <TouchableOpacity 
                 style={styles.buttonView}
-                onPress={() => {}}
+                onPress={() => {navigation.navigate("SignUp")}}
                 >
                     <Image 
                     style={{height: 50, width: 50}}
