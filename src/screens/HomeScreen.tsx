@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {Alert, Dimensions, FlatList, Image, Modal, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 
 
 
@@ -16,11 +16,23 @@ export type listData = {
 
 
 
+
 const HomeScreen = ({navigation, route}) => {
 
+    const [modalVisible, setModalVisible] = useState(false)
+    const [selectedItem, setSelectedItem] = useState<listData|null>(null)
+
     const onItemClick = (item: listData) => {
-       navigation.navigate("Details", {item} )
+        setSelectedItem(item);
+        setModalVisible(true);
     }
+
+    const hideModal = () => {
+        setModalVisible(false);
+    }
+
+    const width = Dimensions.get('screen').width
+    const height = Dimensions.get('screen').height
 
 
     const listData: listData[] = [
@@ -102,8 +114,32 @@ const HomeScreen = ({navigation, route}) => {
 
     }
 
+
     return (
     <View style={styles.container}>
+        <Modal 
+        animationType='fade'
+        onShow={() => {console.log("Modal Shown")}}
+        onDismiss={() => {console.log("Modal Shown")}}
+        style={{width: width, height: height, justifyContent: 'center', alignItems: 'center'}}
+        transparent={true}
+        visible={modalVisible} >
+            <View style={{flex: 1, width: '100%', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.6)'}}>
+                <View style={{ width: '80%', justifyContent: 'center', alignItems: 'center', height:"70%", backgroundColor: 'white', borderRadius: 15}}>
+                    <Image source={{uri: selectedItem?.imageUrl}} style={{width: 140, height: 140}}/>
+                    <Text style={{marginTop: 5, fontSize: 20, color: 'red', fontWeight: 'bold'}}>{selectedItem?.title}</Text>
+                    <Text style={{marginTop: 15, fontSize: 18, color: 'gray'}}>{selectedItem?.description}</Text>
+                    <TouchableOpacity 
+                     style={{backgroundColor: 'blue', marginTop: 40, width: 140, height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center'}}
+                     onPress={hideModal}
+                    >
+                        <Text style={{fontSize: 22, color: 'white', fontWeight: 'bold'}}>Okay</Text>
+                        </TouchableOpacity>
+                </View>
+                
+
+            </View>
+            </Modal>
         <FlatList 
             data={listData}
             renderItem={({item}) => renderItem(item)}
