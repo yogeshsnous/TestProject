@@ -33,6 +33,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DetailsScreen from './src/screens/DetailsScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ProfileScreen from './src/screens/ProfileScreen';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -100,6 +101,7 @@ function App(): React.JSX.Element {
         <Stack.Screen  options={{headerShown: false}} name="Home" component={HomeScreen} />
         <Stack.Screen  options={{headerShown: false}} name="Details" component={DetailsScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -29,6 +29,7 @@ const HomeScreen = ({navigation, route}) => {
 
     const hideModal = () => {
         setModalVisible(false);
+        navigation.navigate("Profile");
     }
 
     const width = Dimensions.get('screen').width
