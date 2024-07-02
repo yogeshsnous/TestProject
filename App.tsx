@@ -95,9 +95,13 @@ function MyTabs() {
 
 function App(): React.JSX.Element {
 
+  let initialRouteName;
+  //checkaync
+  initialRouteName = "Login"
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Test'>
+      <Stack.Navigator initialRouteName={initialRouteName}>
       <Stack.Screen options={{headerShown: false}} name="Test" component={TestScreen} />
         <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
         <Stack.Screen  options={{headerShown: false}} name="Home" component={HomeScreen} />
@@ -107,6 +111,7 @@ function App(): React.JSX.Element {
       </Stack.Navigator>
     </NavigationContainer>
   );
+
 }
 
 const customStyles = StyleSheet.create({

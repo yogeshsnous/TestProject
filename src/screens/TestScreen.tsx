@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
 
 const TestScreen = () => {
 
@@ -57,6 +57,7 @@ const TestScreen = () => {
     }
 
     type customString = string;
+    type Digits = number;
 
 
     const employeeOne: Employee = {
@@ -67,7 +68,7 @@ const TestScreen = () => {
     }
 
 
-    const firstName: customString = "David"
+    const firstName: customString = "David";
 
 
     interface Student {
@@ -107,14 +108,35 @@ const TestScreen = () => {
     }
 
     const environment: Env = Env.prod;
-   
+
+
+    const AddNumbers = (num1: number, num2:number): number =>  {
+        const total = num1 + num2;
+        console.log("Total", total);
+        return total;
+    }
+
+    function AddNumber2(num1: number, num2:number): number {
+        const total = num1 + num2;
+        console.log("Total", total);
+        return total;
+    }
     
+    function checkNumberIsNonZero(num: number): boolean {
+        if(num === 0) {
+            return true
+        } else {
+            return false;
+        }
+    }
 
 
 
     return (
         <View>
             <Text>Basics</Text>
+
+            <Button title="Add Numbers" onPress={() => AddNumbers(5,12.3)}/>
         </View>
     )
 }

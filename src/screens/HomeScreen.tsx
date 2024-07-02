@@ -1,5 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
-import {Alert, Dimensions, FlatList, Image, Modal, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {Alert, Button, Dimensions, FlatList, Image, Modal, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 
 
 
@@ -115,6 +116,11 @@ const HomeScreen = ({navigation, route}) => {
 
     }
 
+    const signoutAction = async () => {
+       await AsyncStorage.removeItem("USER_TOKEN");
+       navigation.pop()
+    }
+
 
     return (
     <View style={styles.container}>
@@ -148,6 +154,7 @@ const HomeScreen = ({navigation, route}) => {
             style={{width: '100%'}}
             ListHeaderComponent={() => <Text style={{fontSize: 24}}>Days List</Text>}
         />
+        <Button title='Sign Out' onPress={() => signoutAction() }/>
     </View>
     )
         
