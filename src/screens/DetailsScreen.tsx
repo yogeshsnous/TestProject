@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {ActivityIndicator, Button, FlatList, Image, ScrollView, SectionList, StyleSheet, Text, View} from 'react-native'
+import {ActivityIndicator, Button, FlatList, Image, ScrollView, Linking, StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 import { listData } from './HomeScreen';
 
 
@@ -57,6 +57,16 @@ const DetailsScreen = (props: detailsProps) => {
        
     }
 
+    const openURL = async () => {
+          const res = await Linking.canOpenURL("sms: 9999999999");
+           console.log(res, "RESULT");
+        //if(res) {
+        //Linking.openURL("revolvemarket://open?link_click_id=link-1292144151051241678")
+        //}
+
+       // Linking.openURL("mailto: support@expo.io")
+    }
+
 
 
 
@@ -64,11 +74,9 @@ const DetailsScreen = (props: detailsProps) => {
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
        
 
-        {loading ? <ActivityIndicator size={"large"} color={"red"}/> : 
-        <FlatList 
-        data={users}
-        renderItem={({item}) => <Text style={{fontSize: 14, margin: 10}}>{item.first_name}</Text>}
-        />}
+        <TouchableOpacity onPress={() => openURL()}>
+            <Text style={{color: 'blue'}}>Open Amazon</Text>
+        </TouchableOpacity>
         
         
     </View>
