@@ -97,7 +97,7 @@ function App(): React.JSX.Element {
 
   let initialRouteName;
   //checkaync
-  initialRouteName = "Login"
+  initialRouteName = "Test"
 
   return (
     <NavigationContainer>

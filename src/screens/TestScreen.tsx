@@ -1,5 +1,5 @@
-import React from "react";
-import {View, Text, Button} from 'react-native';
+import React, { useState } from "react";
+import {View, Text, Button, Animated, Image, Easing} from 'react-native';
 
 const TestScreen = () => {
 
@@ -110,33 +110,69 @@ const TestScreen = () => {
     const environment: Env = Env.prod;
 
 
-    const AddNumbers = (num1: number, num2:number): number =>  {
-        const total = num1 + num2;
-        console.log("Total", total);
-        return total;
-    }
-
-    function AddNumber2(num1: number, num2:number): number {
-        const total = num1 + num2;
-        console.log("Total", total);
-        return total;
-    }
     
-    function checkNumberIsNonZero(num: number): boolean {
-        if(num === 0) {
-            return true
-        } else {
-            return false;
-        }
-    }
 
+    const [rotateValueHolder] = useState(new Animated.Value(0));
+
+    const Animate = () =>  {
+        Animated.loop(Animated.timing(rotateValueHolder, {
+            toValue: 1,
+            duration: 3000,
+            easing: Easing.ease,
+            useNativeDriver: true,
+          })).start();
+    }
 
 
     return (
-        <View>
-            <Text>Basics</Text>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Animated.Image
+            style={{
+              width: 20,
+              height: 20,
+              transform:
+                [
+                  {
+                    rotate: rotateValueHolder.interpolate(
+                        {
+                          inputRange: [0, 1],
+                          outputRange: ['0deg', '360deg'],
+                        }
+                      )
+                   },
+                  {
+                    translateX: rotateValueHolder.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0, 120]
+                    })
+                },
+                {
+                    translateY: rotateValueHolder.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0, -25]
+                    })
+                },
+                {
+                    scaleX: rotateValueHolder.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [1, 15]
+                    })
+                },
+                {
+                    scaleY: rotateValueHolder.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [1, 12.5]
+                    })
+                }
+                ],
+            }}
+              source={require("./arrowRound.png")}
+          />
+                
+                <View style={{bottom: 40, position: 'absolute'}}><Button title="Animate" onPress={() => Animate()}/></View>
+                
 
-            <Button title="Add Numbers" onPress={() => AddNumbers(5,12.3)}/>
+                
         </View>
     )
 }

@@ -36,6 +36,12 @@ const LoginScreen = ({navigation}) => {
 
     const checkUserLoggedIn = async () => {
         const result = await AsyncStorage.getItem("USER_TOKEN");
+        const userData = await AsyncStorage.getItem("USER");
+        const userData2 = await AsyncStorage.getItem("USER_TWO");
+        const value = AsyncStorage.flushGetRequests()
+
+        console.log(userData);
+        console.log(userData2);
         if(result && result !== null) {
             navigation.navigate("Home");
         }

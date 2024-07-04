@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, TextInput, ScrollView, Dimensions, Button, TouchableOpacity, KeyboardAvoidingView, Platform, Alert } from "react-native"
 
@@ -79,25 +80,42 @@ const SignUpScreen = (props: signupProps) => {
             bloodGroup: "B+"
           }
 
-          console.log("REQUEST: ", personData);
+          //await AsyncStorage.setItem('USER_INFO', JSON.stringify(personData));
 
-          const res = await fetch('https://dev-api.medugo.com/personProfile', {
-            "method": 'POST',
-            "body":  JSON.stringify(personData),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'x-sessiontoken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJHVUlEIjoiQTlmT3BhMjZlSFJhZjJsR3RuL2lLMDhMOW9PaWRmaW9ONFBHQ1F0dSt6WWI4aG5YbVV0OGxvSWFmcWY4UFpLNU80RVp1Wjd3aE9BR0x6RjExNkhlc2c9PSIsIk1vYmlsZU5vIjoiNzA4MTI1ODgwOSIsIkNvdW50cnlDb2RlIjoiOTEiLCJEZXZpY2VJZCI6ImYyMTM3MWIyYjdhNWI4MDkiLCJDcmVhdGVkT24iOiIwNi8yNC8yMDI0IDE4OjU0OjMzIiwibmJmIjoxNzE5MjU1MjczLCJleHAiOjE3MTkyNTg4NzMsImlhdCI6MTcxOTI1NTI3MywiaXNzIjoibWVkdWdvLmNvbSIsImF1ZCI6IiouKiJ9.Gnt8P8074HgRJcqfAmgdhvEmFKaKlC5XfY54FZ3HBTU',
-            },
-           });
+        //   console.log("REQUEST: ", personData);
 
-           const jsonOutput = await res.json();
-           console.log("PERSON OUTPUT: ", jsonOutput)
-           if(jsonOutput.errorMessage) {
-            Alert.alert("Failed", jsonOutput.errorMessage)
-           } else {
-            Alert.alert("SUCCESS!!!")
-           }
+        //   const res = await fetch('https://dev-api.medugo.com/personProfile', {
+        //     "method": 'POST',
+        //     "body":  JSON.stringify(personData),
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json',
+        //         'x-sessiontoken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJHVUlEIjoiQTlmT3BhMjZlSFJhZjJsR3RuL2lLMDhMOW9PaWRmaW9ONFBHQ1F0dSt6WWI4aG5YbVV0OGxvSWFmcWY4UFpLNU80RVp1Wjd3aE9BR0x6RjExNkhlc2c9PSIsIk1vYmlsZU5vIjoiNzA4MTI1ODgwOSIsIkNvdW50cnlDb2RlIjoiOTEiLCJEZXZpY2VJZCI6ImYyMTM3MWIyYjdhNWI4MDkiLCJDcmVhdGVkT24iOiIwNi8yNC8yMDI0IDE4OjU0OjMzIiwibmJmIjoxNzE5MjU1MjczLCJleHAiOjE3MTkyNTg4NzMsImlhdCI6MTcxOTI1NTI3MywiaXNzIjoibWVkdWdvLmNvbSIsImF1ZCI6IiouKiJ9.Gnt8P8074HgRJcqfAmgdhvEmFKaKlC5XfY54FZ3HBTU',
+        //     },
+        //    });
+
+        //    const jsonOutput = await res.json();
+        //    console.log("PERSON OUTPUT: ", jsonOutput)
+        //    if(jsonOutput.errorMessage) {
+        //     Alert.alert("Failed", jsonOutput.errorMessage)
+        //    } else {
+        //     Alert.alert("SUCCESS!!!")
+        //    }
+
+        const personData1 = {
+            hlogPersonId: 944,
+            appPersonId: "537P1719255375593",
+            firstName: "John",
+            lastName: "Smith",
+        }
+        const personData2 = {
+            lastName: "SmithOne",
+            gender: 'Male',
+            height: "5.5",
+        }
+
+        await AsyncStorage.setItem('USER', JSON.stringify(personData1));
+        await AsyncStorage.setItem('USER_TWO', JSON.stringify(personData2));
 
            
     }
