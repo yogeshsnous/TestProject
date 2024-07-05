@@ -18,7 +18,7 @@ type loginProps = {
 
 
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ navigation }) => {
 
 
     const [userName, setUserName] = useState<string>("")
@@ -42,20 +42,20 @@ const LoginScreen = ({navigation}) => {
 
         console.log(userData);
         console.log(userData2);
-        if(result && result !== null) {
+        if (result && result !== null) {
             navigation.navigate("Home");
         }
         setLoading(false);
     }
 
 
- 
+
     const onLoginPress = async () => {
         const userData = {
             email: userName,
             password: password
         }
-        
+
 
         const res = await fetch("https://reqres.in/api/login", {
             method: "POST",
@@ -76,9 +76,9 @@ const LoginScreen = ({navigation}) => {
         }
 
         console.log(output);
-       
-   
-       
+
+
+
     }
 
     const patchAPI = async (data: any) => {
@@ -93,7 +93,7 @@ const LoginScreen = ({navigation}) => {
 
         const output = await res.json();
 
-        console.log("PATCH OUTPUT",  output);
+        console.log("PATCH OUTPUT", output);
 
     }
 
@@ -114,8 +114,8 @@ const LoginScreen = ({navigation}) => {
 
         const output = await res.json();
 
-        console.log("PUT OUTPUT",  output);
-        
+        console.log("PUT OUTPUT", output);
+
     }
 
     const deleteAPI = async () => {
@@ -129,104 +129,104 @@ const LoginScreen = ({navigation}) => {
 
         const output = await res.json();
 
-        console.log("DELETE OUTPUT",  output);
-        
-    }
-   
+        console.log("DELETE OUTPUT", output);
 
-    if(loading) {
-        return <View style={{flex: 1}}><ActivityIndicator /></View>
+    }
+
+
+    if (loading) {
+        return <View style={{ flex: 1 }}><ActivityIndicator /></View>
     } else {
         return (<View style={styles.container}>
-            <ScrollView style={{width: '100%'}}>
-            
-                <View style={{width: '100%', backgroundColor: '#DEDEDE', alignItems: 'center'}}>
-                <KeyboardAvoidingView
-                    keyboardVerticalOffset={100}
-                    style={{flex: 1, width: '100%', backgroundColor: '#DEDEDE', alignItems: 'center'}}
-                 >
-                <Image
-                    style={styles.logo}
-                    source={require("./circle.png")}
-                    resizeMode='center'
-                />
-                
-                <Text style={styles.welcomeText}>upTime</Text>
-    
-                <Text style={styles.description}>
-                        {"Welcome"}
-                </Text>
-    
-                <TextInput 
-                    style={styles.textInput}
-                    onChangeText={setUserName}
-                    placeholder='Enter User Name'
-                    placeholderTextColor="black"
-                    keyboardType='default'
-                    
-                    />
-    
-                    <TextInput 
-                    style={styles.textInput}
-                    onChangeText={setPassword}
-                    placeholder='Enter Password'
-                    placeholderTextColor="black"
-                    maxLength={10} 
-                    secureTextEntry={isTextVisible}
-                    keyboardType='numeric'
-                    />
-    
-    
-                    <TouchableOpacity 
-                    style={styles.buttonView}
-                    onPress={onLoginPress}
+            <ScrollView style={{ width: '100%' }}>
+
+                <View style={{ width: '100%', backgroundColor: '#DEDEDE', alignItems: 'center' }}>
+                    <KeyboardAvoidingView
+                        keyboardVerticalOffset={100}
+                        style={{ flex: 1, width: '100%', backgroundColor: '#DEDEDE', alignItems: 'center' }}
                     >
-                        <Image 
-                        style={{height: 50, width: 50}}
-                        source={require("./circle.png")}
-                    resizeMode='center'/>
-    
-                    <Text style={{fontSize: 20}}>
-                        CLICK TO LOGIN
-                    </Text>
-    
-                    </TouchableOpacity>
-    
-                    <TouchableOpacity 
-                    style={styles.buttonView}
-                    onPress={() => {navigation.navigate("SignUp")}}
-                    >
-                        <Image 
-                        style={{height: 50, width: 50}}
-                        source={require("./circle.png")}
-                    resizeMode='center'/>
-    
-                    <Text style={{fontSize: 14}}>
-                        Don't Have an Account?, Click Here!
-                    </Text>
-    
-                    </TouchableOpacity>
-                    
-    
+                        <Image
+                            style={styles.logo}
+                            source={require("./circle.png")}
+                            resizeMode='center'
+                        />
+
+                        <Text style={styles.welcomeText}>upTime</Text>
+
+                        <Text style={styles.description}>
+                            {"Welcome"}
+                        </Text>
+
+                        <TextInput
+                            style={styles.textInput}
+                            onChangeText={setUserName}
+                            placeholder='Enter User Name'
+                            placeholderTextColor="black"
+                            keyboardType='default'
+
+                        />
+
+                        <TextInput
+                            style={styles.textInput}
+                            onChangeText={setPassword}
+                            placeholder='Enter Password'
+                            placeholderTextColor="black"
+                            maxLength={10}
+                            secureTextEntry={isTextVisible}
+                            keyboardType='numeric'
+                        />
+
+
+                        <TouchableOpacity
+                            style={styles.buttonView}
+                            onPress={onLoginPress}
+                        >
+                            <Image
+                                style={{ height: 50, width: 50 }}
+                                source={require("./circle.png")}
+                                resizeMode='center' />
+
+                            <Text style={{ fontSize: 20 }}>
+                                CLICK TO LOGIN
+                            </Text>
+
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={styles.buttonView}
+                            onPress={() => { navigation.navigate("SignUp") }}
+                        >
+                            <Image
+                                style={{ height: 50, width: 50 }}
+                                source={require("./circle.png")}
+                                resizeMode='center' />
+
+                            <Text style={{ fontSize: 14 }}>
+                                Don't Have an Account?, Click Here!
+                            </Text>
+
+                        </TouchableOpacity>
+
+
                     </KeyboardAvoidingView>
-    
+
                 </View>
-           
-    
-           
+
+
+
             </ScrollView>
         </View>)
 
     }
 
-    
+
 
 }
 
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'red',  
+        backgroundColor: 'red',
     },
     buttonView: {
         marginVertical: 25,

@@ -35,6 +35,7 @@ import SignUpScreen from './src/screens/SignUpScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileScreen from './src/screens/ProfileScreen';
 import TestScreen from './src/screens/TestScreen';
+import WebScreen from './src/screens/WebScreen';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -97,7 +98,7 @@ function App(): React.JSX.Element {
 
   let initialRouteName;
   //checkaync
-  initialRouteName = "Details"
+  initialRouteName = "Login"
 
   return (
     <NavigationContainer>
@@ -108,6 +109,7 @@ function App(): React.JSX.Element {
         <Stack.Screen  options={{headerShown: false}} name="Details" component={DetailsScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Web" component={WebScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

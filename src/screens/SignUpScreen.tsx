@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, Image, TextInput, ScrollView, Dimensions, Butto
 
 
 type signupProps = {
-   navigation?: any
+    navigation?: any
 }
 
 
@@ -78,9 +78,9 @@ const SignUpScreen = (props: signupProps) => {
             modifiedDate: "2024-06-25T03:40:07.066Z",
             termsAndCondition: true,
             bloodGroup: "B+"
-          }
+        }
 
-          //await AsyncStorage.setItem('USER_INFO', JSON.stringify(personData));
+        //await AsyncStorage.setItem('USER_INFO', JSON.stringify(personData));
 
         //   console.log("REQUEST: ", personData);
 
@@ -117,37 +117,37 @@ const SignUpScreen = (props: signupProps) => {
         await AsyncStorage.setItem('USER', JSON.stringify(personData1));
         await AsyncStorage.setItem('USER_TWO', JSON.stringify(personData2));
 
-           
+
     }
 
 
     return (
-        <View style={{flex: 1, width: '100%', height: '100%', alignItems: 'center', justifyContent: 'flex-start', backgroundColor: "#DEDEDE"}}>
-            <TextInput 
+        <View style={{ flex: 1, width: '100%', height: '100%', alignItems: 'center', justifyContent: 'flex-start', backgroundColor: "#DEDEDE" }}>
+            <TextInput
                 style={styles.textInput}
                 onChangeText={setFirstName}
                 placeholder='Enter First Name'
                 placeholderTextColor="black"
-                keyboardType='default'  
+                keyboardType='default'
             />
 
-            <TextInput 
+            <TextInput
                 style={styles.textInput}
                 onChangeText={setLastName}
                 placeholder='Enter Last Name'
                 placeholderTextColor="black"
-                keyboardType='default'  
+                keyboardType='default'
             />
 
-            <TextInput 
+            <TextInput
                 style={styles.textInput}
                 onChangeText={setGender}
                 placeholder='Enter Gender'
                 placeholderTextColor="black"
-                keyboardType='default'  
+                keyboardType='default'
             />
 
-            <TextInput 
+            <TextInput
                 style={styles.textInput}
                 onChangeText={setEmail}
                 placeholder='Enter Email Id'
@@ -155,20 +155,24 @@ const SignUpScreen = (props: signupProps) => {
                 keyboardType='default'
             />
 
-            <TouchableOpacity 
+            <TouchableOpacity style={{ marginTop: 25 }} onPress={() => props.navigation.navigate('Web')}>
+                <Text style={{ color: 'blue', fontSize: 14 }}>Terms and Conditions</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
                 style={styles.buttonView}
                 onPress={signUpAction}
-                >
-                    <Image 
-                    style={{height: 50, width: 50}}
+            >
+                <Image
+                    style={{ height: 50, width: 50 }}
                     source={require("./circle.png")}
-                resizeMode='center'/>
+                    resizeMode='center' />
 
-                <Text style={{fontSize: 20}}>
+                <Text style={{ fontSize: 20 }}>
                     Sign Up
                 </Text>
 
-                </TouchableOpacity>
+            </TouchableOpacity>
 
         </View>
 
@@ -180,7 +184,7 @@ const SignUpScreen = (props: signupProps) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'red',  
+        backgroundColor: 'red',
     },
     buttonView: {
         marginVertical: 50,
