@@ -36,6 +36,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileScreen from './src/screens/ProfileScreen';
 import TestScreen from './src/screens/TestScreen';
 import WebScreen from './src/screens/WebScreen';
+import UserOnboardScreen from './src/screens/UserOnboardScreen';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -98,7 +99,8 @@ function App(): React.JSX.Element {
 
   let initialRouteName;
   //checkaync
-  initialRouteName = "Login"
+  initialRouteName = "Onboard"
+
 
   return (
     <NavigationContainer>
@@ -110,6 +112,7 @@ function App(): React.JSX.Element {
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Web" component={WebScreen} />
+         <Stack.Screen name="Onboard" component={UserOnboardScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
