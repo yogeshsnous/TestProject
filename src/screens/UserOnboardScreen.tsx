@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Alert, Button, StyleSheet, Switch, Text, TextInput, View } from 'react-native'
 import {Picker} from '@react-native-picker/picker';
 import CheckBox from '@react-native-community/checkbox';
+import DatePicker from 'react-native-date-picker';
 
 
 
@@ -16,10 +17,11 @@ const UserOnboardScreen = (props: userOnboardProps) => {
 
     const pickerRef = useRef<Picker<string>>(null)
 
-    const [name, setName] = useState("")
-    const [age, setAge] = useState("")
-    const [dob, setDoB] = useState("")
-    const [pan, setPan] = useState("")
+    
+    const [dob, setDoB] = useState(new Date())
+
+    const [isDateShown, setIsDateShown] = useState(false)
+    
     const [restricted, setRestricted] = useState(false)
 
     const [disableSwitch, setDisableSwitch] = useState(true);
@@ -38,27 +40,25 @@ const UserOnboardScreen = (props: userOnboardProps) => {
 
     return (
     <View style={style.container}>
-        <TextInput style={style.textInput} placeholder={"Name"} value={name} onChangeText={(value) => {
-            setName(value)
-            }}/> 
 
-        <TextInput style={style.textInput} placeholder={"Age"} value={age} onChangeText={setName}/>
-        
-        {<TextInput style={style.textInput} placeholder={"DOB"} value={dob} onChangeText={setName}/> }
-        {<TextInput style={style.textInput} placeholder={"PAN"} value={pan} 
-         onChangeText={(value) => {
-            if(value.length > 0) {
-                setDisableSwitch(false)
-            } else {
-                setDisableSwitch(true)
-            }
-            console.log("text chnaged")
-            setName(value)
-            }}
-            />
-            }
+        <DatePicker
+        modal
+        theme='dark'
+        open={isDateShown}
+        date={dob}
+        mode='datetime'
+        onConfirm={(date) => {
+            setDoB(date)
+            setIsDateShown(false)
+            Alert.alert("Success")
+        }}
+        onCancel={() => {
+            Alert.alert("Cancelled")
+          }}
+        buttonColor='red'
 
-       
+        />
+
         <Picker
         selectedValue={lang}
 
@@ -76,6 +76,8 @@ const UserOnboardScreen = (props: userOnboardProps) => {
             <Picker.Item label="JavaScript" value="js" />
             <Picker.Item label="Typescript" value="ts" />
         </Picker>
+
+        <Text style={{margin: 5, fontSize: 20}}>{dob.toDateString()}</Text>
 
         <View style={style.switchView}>
             <Text>Accept Terms and Conditions</Text>
@@ -124,7 +126,7 @@ const UserOnboardScreen = (props: userOnboardProps) => {
                 disabled={disableSwitch}
             />
         </View>
-        <Button title='close Dropdown' onPress={() => pickerRef.current?.focus()}/>
+        <Button title='Select DOB' onPress={() =>setIsDateShown(true)}/>
 
     </View>)
 }
