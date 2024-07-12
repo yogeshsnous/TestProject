@@ -99,7 +99,7 @@ function App(): React.JSX.Element {
 
   let initialRouteName;
   //checkaync
-  initialRouteName = "Onboard"
+  initialRouteName = "Profile"
 
 
   return (
