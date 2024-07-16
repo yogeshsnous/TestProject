@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Button, FlatList, Image, ScrollView, Linking, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { ActivityIndicator, Button, FlatList, Image, ScrollView, Linking, StyleSheet, Text, View, TouchableOpacity, BackHandler, Alert } from 'react-native'
 import { listData } from './HomeScreen';
 
 
@@ -29,6 +29,28 @@ const DetailsScreen = (props: detailsProps) => {
         firstName: "Michael",
         lastName: "Jphn"
     }
+
+    const backPressed = () => {
+
+    
+        Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+            {
+              
+            },
+            {text: 'YES', onPress: () => BackHandler.exitApp()},
+          ]);
+        return true;
+    }
+
+
+    useEffect(() => {
+        const back = BackHandler.addEventListener('hardwareBackPress', backPressed)
+        console.log()
+
+
+        return () => back.remove()
+
+    }, [])
 
     useEffect(() => {
         fetchUserList()

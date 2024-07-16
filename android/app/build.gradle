@@ -82,6 +82,14 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    packagingOptions {
+        pickFirst '**/libjsc.so'
+        pickFirst '**/libc++_shared.so'
+        pickFirst '**/libfbjni.so'
+        pickFirst '**/llibturbomodulejsijni.so'
+        pickFirst '**/libturbomodulejsijni.so'
+        // Add more according to your error here
+    }
     signingConfigs {
         debug {
             storeFile file('debug.keystore')

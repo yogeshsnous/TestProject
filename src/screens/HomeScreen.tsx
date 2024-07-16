@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SearchBar } from '@rneui/themed';
 import React, { useEffect, useState } from 'react';
-import { Alert, Button, Dimensions, FlatList, Image, Modal, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Button, Dimensions, FlatList, Image, Modal, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
 
 
 
@@ -19,23 +21,6 @@ export type listData = {
 
 
 const HomeScreen = ({ navigation, route }) => {
-
-    const [modalVisible, setModalVisible] = useState(false)
-    const [selectedItem, setSelectedItem] = useState<listData | null>(null)
-
-    const onItemClick = (item: listData) => {
-        setSelectedItem(item);
-        setModalVisible(true);
-    }
-
-    const hideModal = () => {
-        setModalVisible(false);
-        navigation.navigate("Profile");
-    }
-
-    const width = Dimensions.get('screen').width
-    const height = Dimensions.get('screen').height
-
 
     const listData: listData[] = [
         {
@@ -91,6 +76,29 @@ const HomeScreen = ({ navigation, route }) => {
     ]
 
 
+    const [modalVisible, setModalVisible] = useState(false)
+    const [selectedItem, setSelectedItem] = useState<listData | null>(null)
+
+    const [search, setSearch] = useState<string>("")
+
+    const [filteredData, setFilteredData] = useState(listData)
+
+    const onItemClick = (item: listData) => {
+        setSelectedItem(item);
+        setModalVisible(true);
+    }
+
+    const hideModal = () => {
+        setModalVisible(false);
+        navigation.navigate("Details");
+    }
+
+    const width = Dimensions.get('screen').width
+    const height = Dimensions.get('screen').height
+
+
+   
+
     const renderItem = (item: listData) => {
         return (<TouchableOpacity
             onPress={() => onItemClick(item)}
@@ -117,8 +125,9 @@ const HomeScreen = ({ navigation, route }) => {
     }
 
     const signoutAction = async () => {
-        await AsyncStorage.removeItem("USER_TOKEN");
-        navigation.pop()
+       // await AsyncStorage.removeItem("USER_TOKEN");
+       // navigation.pop()
+       //ToastAndroid.showWithGravityAndOffset("signing Out", ToastAndroid.LONG, ToastAndroid.TOP, 40, 50)
     }
 
 
@@ -147,8 +156,24 @@ const HomeScreen = ({ navigation, route }) => {
 
                 </View>
             </Modal>
+            <SearchBar value={search} onChangeText={(value) => {
+                setSearch(value)
+                if(value.length > 0 ) {
+                    const searched: any[] = []
+                     listData.filter((item) => {
+                        console.log(item.title, value, "Data")
+                        item.title.includes(value) && searched.push(item)
+                    });
+                    console.log("Search", searched)
+                    setFilteredData(searched);
+                } else {
+                    setFilteredData(listData);
+                }
+                
+
+                }} />
             <FlatList
-                data={listData}
+                data={filteredData}
                 renderItem={({ item }) => renderItem(item)}
                 horizontal={false}
                 style={{ width: '100%' }}
