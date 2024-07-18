@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Button, FlatList, Image, ScrollView, Linking, StyleSheet, Text, View, TouchableOpacity, BackHandler, Alert } from 'react-native'
 import { listData } from './HomeScreen';
+import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 
 
 
@@ -22,6 +23,8 @@ type user = {
 
 const DetailsScreen = (props: detailsProps) => {
 
+    const actionSheetRef = useRef<ActionSheetRef>(null);
+
     const [loading, setLoading] = useState(false)
     const [users, setUser] = useState([])
 
@@ -37,7 +40,7 @@ const DetailsScreen = (props: detailsProps) => {
             {
               
             },
-            {text: 'YES', onPress: () => BackHandler.exitApp()},
+            {text: 'YES', onPress: () => props.navigation.pop()},
           ]);
         return true;
     }
@@ -80,9 +83,7 @@ const DetailsScreen = (props: detailsProps) => {
     }
 
     const openURL = async () => {
-        const res = await Linking.canOpenURL("sms: 9999999999");
-        console.log(res, "RESULT");
-        //if(res) {
+       Linking.openSettings();
         //Linking.openURL("revolvemarket://open?link_click_id=link-1292144151051241678")
         //}
 
@@ -94,6 +95,16 @@ const DetailsScreen = (props: detailsProps) => {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <ActionSheet ref={actionSheetRef}>
+                <Text>Hi, I am here.</Text>
+
+                <Text>Hi, I am here.</Text>
+                <Text>Hi, I am here.</Text>
+
+                <Text>Hi, I am here.</Text>
+                <Text>Hi, I am here.</Text>
+                <Text>Hi, I am here.</Text>
+            </ActionSheet>
 
 
             <TouchableOpacity onPress={() => openURL()}>
