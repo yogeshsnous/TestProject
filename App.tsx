@@ -37,6 +37,7 @@ import ProfileScreen from './src/screens/ProfileScreen';
 import TestScreen from './src/screens/TestScreen';
 import WebScreen from './src/screens/WebScreen';
 import UserOnboardScreen from './src/screens/UserOnboardScreen';
+import SelectionLstScreen from './src/screens/SelectionListScreen';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -99,7 +100,7 @@ function App(): React.JSX.Element {
 
   let initialRouteName;
   //checkaync
-  initialRouteName = "Home"
+  initialRouteName = "SelectionList"
 
 
   return (
@@ -113,6 +114,7 @@ function App(): React.JSX.Element {
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Web" component={WebScreen} />
          <Stack.Screen name="Onboard" component={UserOnboardScreen} />
+         <Stack.Screen name="SelectionList" component={SelectionLstScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
