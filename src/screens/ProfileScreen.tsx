@@ -65,7 +65,7 @@ class ProfileScreen extends React.Component<profileProps, profileState> {
 
 
     openGallery() {
-        launchImageLibrary({mediaType: 'photo', presentationStyle: ''}, (res) => {
+        launchImageLibrary({mediaType: 'photo'}, (res) => {
             this.setState({profileImage: res?.assets[0].uri ?? ""})
 
             

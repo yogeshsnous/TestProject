@@ -62,7 +62,7 @@ const LoginScreen = ({ navigation }) => {
             body: JSON.stringify(userData),
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
         })
 

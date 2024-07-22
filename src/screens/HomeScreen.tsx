@@ -84,8 +84,9 @@ const HomeScreen = ({ navigation, route }) => {
     const [filteredData, setFilteredData] = useState(listData)
 
     const onItemClick = (item: listData) => {
-        setSelectedItem(item);
-        setModalVisible(true);
+        navigation.navigate("BuisnessDetails")
+       // setSelectedItem(item);
+       // setModalVisible(true);
     }
 
     const hideModal = () => {
