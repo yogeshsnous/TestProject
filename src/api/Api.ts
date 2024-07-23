@@ -8,3 +8,7 @@ const axiosInstance = axios.create({ baseURL: 'https://jsonplaceholder.typicode.
 export const getData = async (url: string) => {
     return axiosInstance.get(url)
 }
+
+export const postData = async (url: string, body: any) => {
+    return axiosInstance.put(url, body)
+}

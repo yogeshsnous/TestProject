@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Button, FlatList, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, FlatList, StyleSheet, Text,TextInput, View } from 'react-native';
 import axios from 'axios';
-import { getData } from '../api/Api';
+import { getData, postData } from '../api/Api';
 
 
 
@@ -17,6 +17,9 @@ type buisnessDetailsScreenProps = {
 const BuisnessDetailsScreen = (props: buisnessDetailsScreenProps) => {
 
     const [data, setData] = useState([])
+
+    const [title, setTitle] = useState("")
+    const [body, setBody] = useState("")
 
     useEffect(() => {
         fetchUser();
@@ -45,9 +48,28 @@ const BuisnessDetailsScreen = (props: buisnessDetailsScreenProps) => {
     }
 
     const fetchPost = async () => {
-        const url = "posts"
-        const result = await getData(url);
-            Alert.alert("POST", result.data[1].title)
+        const bodyData = {
+            title: title,
+            body: body,
+            userId: 1,
+        }
+
+
+        console.log(bodyData)
+        try {
+            const res = await postData('posts', bodyData);
+            console.log(res);
+            if(res.data?.id) {
+                Alert.alert("Success!!", res.data?.id.toString() )
+            } else {
+                Alert.alert("Unable to save the post")
+            }
+           
+        } catch (err) {
+            console.log(err);
+        }
+
+        
     }
 
 
@@ -77,7 +99,9 @@ const BuisnessDetailsScreen = (props: buisnessDetailsScreenProps) => {
 
     return(
         <View style={styles.container}>
-            <Button title="Get POST Data" onPress={() => fetchPost()}/>
+            <TextInput style={{width: 220, height: 50, borderWidth: 1, margin: 2}} onChangeText={setTitle}/>
+            <TextInput style={{width: 220, height: 50, borderWidth: 1, margin: 2}} onChangeText={setBody}/>
+            <Button title="POST Data" onPress={() => fetchPost()}/>
 
             <FlatList
             data={data}
@@ -96,6 +120,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         width: '100%',
         flex: 1,
+        alignItems: 'center',
     }
 })
 
