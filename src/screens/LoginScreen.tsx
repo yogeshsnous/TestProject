@@ -140,6 +140,8 @@ const LoginScreen = ({ navigation }) => {
         return (<View style={styles.container}>
             <ScrollView style={{ width: '100%' }}>
 
+            <Text></Text>
+
                 <View style={{ width: '100%', backgroundColor: '#DEDEDE', alignItems: 'center' }}>
                     <KeyboardAvoidingView
                         keyboardVerticalOffset={100}

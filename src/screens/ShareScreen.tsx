@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { View, TouchableOpacity, Image, Text, Alert } from "react-native"
+import { View, TouchableOpacity, Image, Text, Alert, NativeModules, Button } from "react-native"
 import { launchImageLibrary } from "react-native-image-picker"
 import Share from 'react-native-share'
 
@@ -10,6 +10,8 @@ type shareScreenProps = {
 }
 
 const ShareScreen = (props: shareScreenProps) =>  {
+
+    const {CalendarModule} = NativeModules;
 
     const [image, setImage] = useState<string | null>(null)
 
@@ -34,6 +36,18 @@ const ShareScreen = (props: shareScreenProps) =>  {
         
     }
 
+    const callCalendar = () => {
+        CalendarModule.createCalendarEvent("H", "H");
+
+        CalendarModule.returnNumerFromPromise().then((res: string) => {
+            Alert.alert(res);
+
+        }).catch((err: string) => {
+            Alert.alert("Error",  err as string);
+        }
+        )
+    }
+
     return(
         <View style={{width: '100%', height: '100%', alignItems: 'center'}}>
             <TouchableOpacity
@@ -49,7 +63,7 @@ const ShareScreen = (props: shareScreenProps) =>  {
                 <Text style={{marginLeft: 5, fontSize: 20}}>Share</Text>
             </TouchableOpacity>
 
-
+            <Button title="Call Android" onPress={() => callCalendar()}/>
 
 
         </View>
