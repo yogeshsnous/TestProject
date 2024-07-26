@@ -16,15 +16,8 @@ class CalendarModule(reactContext: ReactApplicationContext) : ReactContextBaseJa
         Log.d("CalendarModule", "Create event called with name: $name and location: $location")
     }
 
-     @ReactMethod fun showMessage(num1: Int, num2: Int, cb: Callback) {
-        val sum = num1 + num2;
-
-        cb.invoke("The sum is: $sum");
-
-    }
-
-    @ReactMethod fun returnNumerFromPromise(promise: Promise) {
-        promise.reject("Error");
+    @ReactMethod fun getMessageFromNative(cb: Callback, errorCb: Callback) {
+       cb.invoke("Received Message from Android");
     }
 
 }

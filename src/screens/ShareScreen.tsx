@@ -37,16 +37,14 @@ const ShareScreen = (props: shareScreenProps) =>  {
     }
 
     const callCalendar = () => {
-        CalendarModule.createCalendarEvent("H", "H");
 
-        CalendarModule.returnNumerFromPromise().then((res: string) => {
-            Alert.alert(res);
-
-        }).catch((err: string) => {
-            Alert.alert("Error",  err as string);
-        }
-        )
+        CalendarModule.getMessageFromNative((res: string) => {
+            Alert.alert(res)
+        }, (err: Error)=> {
+            Alert.alert("Error", err.message);
+        })
     }
+
 
     return(
         <View style={{width: '100%', height: '100%', alignItems: 'center'}}>
@@ -63,7 +61,7 @@ const ShareScreen = (props: shareScreenProps) =>  {
                 <Text style={{marginLeft: 5, fontSize: 20}}>Share</Text>
             </TouchableOpacity>
 
-            <Button title="Call Android" onPress={() => callCalendar()}/>
+            <Button title="Call Native" onPress={() => callCalendar()}/>
 
 
         </View>
