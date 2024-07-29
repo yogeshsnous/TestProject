@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Screen A Snapshot SnapShot tets 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "flex-start",
+      "width": "100%",
+    }
+  }
+>
+  <Image
+    source={
+      {
+        "testUri": "../../../src/screens/circle.png",
+      }
+    }
+    style={
+      {
+        "height": 100,
+        "margin": 25,
+        "width": 100,
+      }
+    }
+    testID="logoImage"
+  />
+  <Text
+    accessibilityLabel="App UI"
+    style={
+      {
+        "margin": 10,
+      }
+    }
+  >
+     Sample App UI
+  </Text>
+  <Text
+    style={
+      {
+        "margin": 10,
+      }
+    }
+    testID="description"
+  >
+    App Description
+  </Text>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "green",
+        "borderRadius": 25,
+        "height": 50,
+        "justifyContent": "center",
+        "margin": 20,
+        "opacity": 1,
+        "width": 220,
+      }
+    }
+    testID="NavigateTestB"
+  >
+    <Text
+      style={
+        {
+          "color": "white",
+        }
+      }
+    >
+      Naviagte to Test B
+    </Text>
+  </View>
+</View>
+`;
