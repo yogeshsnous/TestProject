@@ -37,6 +37,7 @@ exports[`Test Screen A Snapshot SnapShot tets 1`] = `
      Sample App UI
   </Text>
   <Text
+    accessibilityLabel="description"
     style={
       {
         "margin": 10,
@@ -45,6 +46,16 @@ exports[`Test Screen A Snapshot SnapShot tets 1`] = `
     testID="description"
   >
     App Description
+  </Text>
+  <Text
+    style={
+      {
+        "margin": 10,
+      }
+    }
+    testID="appName"
+  >
+    Sample App
   </Text>
   <View
     accessibilityState={
