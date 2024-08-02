@@ -41,6 +41,7 @@ import SelectionLstScreen from './src/screens/SelectionListScreen';
 import BuisnessDetailsScreen from './src/screens/BuisnessDetailsScreen';
 import ShareScreen from './src/screens/ShareScreen';
 import TestScreenA from './src/screens/TestScreenA';
+import LocalProfileScreen from './src/screens/LocalProfileScreen';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -103,7 +104,7 @@ function App(): React.JSX.Element {
 
   let initialRouteName;
   //checkaync
-  initialRouteName = "TestA"
+  initialRouteName = "LocalProfile"
 
 
   return (
@@ -120,6 +121,7 @@ function App(): React.JSX.Element {
          <Stack.Screen name="Onboard" component={UserOnboardScreen} />
          <Stack.Screen name="SelectionList" component={SelectionLstScreen} />
          <Stack.Screen name="BuisnessDetails" component={BuisnessDetailsScreen} />
+         <Stack.Screen name="LocalProfile" component={LocalProfileScreen} />
          <Stack.Screen name="Share" component={ShareScreen} />
       </Stack.Navigator>
     </NavigationContainer>
