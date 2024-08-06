@@ -42,6 +42,7 @@ import BuisnessDetailsScreen from './src/screens/BuisnessDetailsScreen';
 import ShareScreen from './src/screens/ShareScreen';
 import TestScreenA from './src/screens/TestScreenA';
 import LocalProfileScreen from './src/screens/LocalProfileScreen';
+import DrawerNavigator from './src/screens/DrawerNavigation';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -109,21 +110,7 @@ function App(): React.JSX.Element {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={initialRouteName}>
-      <Stack.Screen options={{headerShown: false}} name="Test" component={TestScreen} />
-        <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
-        <Stack.Screen  options={{headerShown: false}} name="Home" component={HomeScreen} />
-        <Stack.Screen  options={{headerShown: false}} name="Details" component={DetailsScreen} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="TestA" component={TestScreenA} />
-        <Stack.Screen name="Web" component={WebScreen} />
-         <Stack.Screen name="Onboard" component={UserOnboardScreen} />
-         <Stack.Screen name="SelectionList" component={SelectionLstScreen} />
-         <Stack.Screen name="BuisnessDetails" component={BuisnessDetailsScreen} />
-         <Stack.Screen name="LocalProfile" component={LocalProfileScreen} />
-         <Stack.Screen name="Share" component={ShareScreen} />
-      </Stack.Navigator>
+      <DrawerNavigator />
     </NavigationContainer>
   );
 
